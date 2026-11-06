@@ -1,7 +1,7 @@
 v 4
-file . "tb_bit_sync.vhd" "c143568ba4f9a5fab2b00a94c9c2473016556453" "20261105104621.054":
-  entity tb_bit_sync at 1( 0) + 0 on 57;
-  architecture sim of tb_bit_sync at 12( 184) + 0 on 58;
-file . "bit_sync.vhd" "e0de54a0aa3b47a4dc6a9fe69c570b9a8c22a962" "20261105104621.053":
-  entity bit_sync at 1( 0) + 0 on 55;
-  architecture rtl of bit_sync at 21( 457) + 0 on 56;
+file . "bit_sync.vhd" "a55e92c624d3ce26038574f6f143aeafa8934567" "20261106064617.661":
+  entity bit_sync at 1( 0) + 0 on 59;
+  architecture rtl of bit_sync at 23( 548) + 0 on 60;
+file . "tb_bit_sync.vhd" "fd1c34584a2d92b8ee04ed963680c445a3a9f70d" "20261106064617.664":
+  entity tb_bit_sync at 1( 0) + 0 on 61;
+  architecture sim of tb_bit_sync at 18( 456) + 0 on 62;

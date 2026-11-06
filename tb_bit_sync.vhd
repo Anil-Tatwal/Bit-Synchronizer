@@ -9,7 +9,7 @@ entity tb_bit_sync is
 		BAUD_HZ            : positive := 10_000_000;
 		TARGET_STEP_PERCENT: integer := 0;
 		BAUD_OFFSET_PERCENT: integer := 0;
-		TRACK_OFFSET_PERCENT: integer := BAUD_OFFSET_PERCENT;
+		TRACK_OFFSET_PERCENT: integer := 0;
 		LINE_CODE_MODE      : natural range 0 to 3 := 0;
 		PHASE_TAP          : natural range 0 to 3 := 0
 	);
