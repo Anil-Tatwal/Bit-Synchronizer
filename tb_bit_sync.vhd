@@ -7,6 +7,7 @@ entity tb_bit_sync is
 	generic (
 		SYS_CLK_FREQ_HZ    : positive := 200_000_000;
 		BAUD_HZ            : positive := 10_000_000;
+		START_PHASE_PERCENT: natural range 0 to 99 := 37;
 		TARGET_STEP_PERCENT: integer := 0;
 		BAUD_OFFSET_PERCENT: integer := 0;
 		TRACK_OFFSET_PERCENT: integer := 0;
@@ -22,6 +23,7 @@ architecture sim of tb_bit_sync is
 	constant CLK_PERIOD    : time := 1 sec / SYS_CLK_FREQ_HZ;
 	constant BIT_PERIOD    : time := 1 sec / ACTUAL_BAUD_HZ;
 	constant TRACK_PERIOD  : time := 1 sec / TRACK_BAUD_HZ;
+	constant START_PHASE   : time := BIT_PERIOD * START_PHASE_PERCENT / 100;
 
 	signal clk           : std_logic := '0';
 	signal reset         : std_logic := '1';
@@ -138,6 +140,7 @@ begin
 	begin
 		wait until falling_edge(clk);
 		reset <= '0';
+		wait for START_PHASE;
 
 		for bit_index in 0 to 127 loop
 			bit_value := pattern(7 - (bit_index mod 8));

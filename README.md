@@ -30,13 +30,20 @@ unhandled.
 The RNRZ-L descrambler starts with an all-ones state. Degree 11 uses feedback
 `state(10) xor state(8)` and output `state(10)`; degree 15 uses feedback
 `state(14) xor state(0)` and output `state(14)`. The encoder/test source must
-use the matching bit order, polynomial, and seed.
+use the matching bit order, polynomial, and seed. These are additive (synchronous)
+descramblers: this interface has no frame marker or seed-acquisition input, so
+the transmitter and receiver LFSR states must be aligned externally. Arbitrary
+startup-phase sweeps validate timing/lock for NRZ-L and Manchester; an RNRZ-L
+data comparison additionally requires a matching first-symbol seed phase.
 
 ## Simulation
 
 The parameterized `tb_bit_sync` runs all four phase taps concurrently and
 checks their quarter-UI spacing, lock retention, decoded data, runtime baud
-changes, and selectable line codes. Example GHDL commands:
+changes, and selectable line codes. The serial stream begins 37% of a UI after
+reset release by default, intentionally avoiding phase alignment with the
+reference clock and NCO. `START_PHASE_PERCENT` can be varied from 0 to 99 for
+additional NRZ-L/Manchester startup-phase tests. Example GHDL commands:
 
 ```sh
 ghdl -a --std=08 bit_sync.vhd tb_bit_sync.vhd
